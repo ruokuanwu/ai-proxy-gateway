@@ -40,10 +40,12 @@ func (lb *LoadBalancer) Pick(ctx context.Context, model string, candidates []pro
 	switch lb.strategy {
 	case "least_errors":
 		return lb.pickLeastErrors(model, available), nil
+	case "round_robin":
+		return lb.pickRoundRobin(model, available), nil
 	case "random":
 		return available[rand.Intn(len(available))], nil
 	default:
-		return lb.pickRoundRobin(model, available), nil
+		return available[rand.Intn(len(available))], nil
 	}
 }
 
