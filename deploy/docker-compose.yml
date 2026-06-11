@@ -1,8 +1,5 @@
 services:
   ai-proxy-gateway:
-    build:
-      context: ..
-      dockerfile: docker/dockerfile
     image: ai-proxy-gateway:latest
     container_name: ai-proxy-gateway
     restart: unless-stopped
