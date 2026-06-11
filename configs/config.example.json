@@ -1,0 +1,65 @@
+{
+    "server": {
+        "addr": ":18080",
+        "readTimeout": "60s",
+        "writeTimeout": "300s",
+        "upstreamTimeout": "120s"
+    },
+    "auth": {
+        "appKeys": [
+            {
+                "name": "default-client",
+                "key": "123",
+                "enabled": true,
+                "models": [
+                    "gpt-5.5"
+                ]
+            }
+        ],
+        "adminKey": "admin_demo_key"
+    },
+    "routing": {
+        "strategy": "round_robin",
+        "errorWindow": "5m",
+        "retry": {
+            "maxAttempts": 2,
+            "perAttemptTimeout": "60s",
+            "retryOnStatus": [
+                429,
+                500,
+                502,
+                503,
+                504
+            ]
+        }
+    },
+    "provider": {
+        "openai-a": {
+            "type": "openai-compatible",
+            "enabled": true,
+            "weight": 1,
+            "options": {
+                "baseURL": "https://xxx.com/v1",
+                "apiKey": "xxx"
+            },
+            "models": {
+                "gpt-5.5": {
+                    "name": "GPT-5.5",
+                    "limit": {
+                        "context": 1050000,
+                        "output": 128000
+                    },
+                    "options": {
+                        "store": false
+                    },
+                    "variants": {
+                        "low": {},
+                        "medium": {},
+                        "high": {},
+                        "xhigh": {}
+                    }
+                }
+            }
+        }
+    }
+}

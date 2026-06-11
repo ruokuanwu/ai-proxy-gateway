@@ -1,0 +1,4 @@
+bin
+
+configs/*.json
+!configs/config.example.json

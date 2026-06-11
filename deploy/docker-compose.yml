@@ -1,0 +1,19 @@
+services:
+  ai-proxy-gateway:
+    build:
+      context: ..
+      dockerfile: docker/dockerfile
+    image: ai-proxy-gateway:latest
+    container_name: ai-proxy-gateway
+    restart: unless-stopped
+    ports:
+      - "18080:8080"
+    environment:
+      GIN_MODE: release
+      PROVIDER_A_API_KEY: ${PROVIDER_A_API_KEY:-}
+      PROVIDER_B_API_KEY: ${PROVIDER_B_API_KEY:-}
+    volumes:
+      - ../configs/config.json:/config/config.json:ro
+    command:
+      - -config
+      - /config/config.json
