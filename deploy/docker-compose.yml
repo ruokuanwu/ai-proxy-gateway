@@ -7,7 +7,7 @@ services:
     container_name: ai-proxy-gateway
     restart: unless-stopped
     ports:
-      - "18080:8080"
+      - "18080:18080"
     environment:
       GIN_MODE: release
       PROVIDER_A_API_KEY: ${PROVIDER_A_API_KEY:-}

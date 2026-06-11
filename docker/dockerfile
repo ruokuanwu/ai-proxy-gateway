@@ -17,7 +17,7 @@ WORKDIR /
 COPY --from=builder /out/ai-proxy-gateway /ai-proxy-gateway
 COPY configs/config.example.json /config/config.json
 
-EXPOSE 8080
+EXPOSE 18080
 
 USER nonroot:nonroot
 ENTRYPOINT ["/ai-proxy-gateway"]
